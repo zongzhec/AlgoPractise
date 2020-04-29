@@ -1,0 +1,2 @@
+# AlgoPractise
+Practise Algorithms
