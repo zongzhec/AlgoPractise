@@ -1,6 +1,5 @@
 package foo.zongzhe.utils;
 
-import static foo.zongzhe.utils.Constants.TAB;
 
 public class ArrayUtil {
 
@@ -11,5 +10,32 @@ public class ArrayUtil {
             }
             System.out.println();
         }
+    }
+
+    /**
+     * Initialize Array with default values
+     *
+     * @param array        Array to be initialized
+     * @param defaultValue default value
+     */
+    public static int[][] initArray(int[][] array, int defaultValue) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = defaultValue;
+            }
+        }
+        return array;
+    }
+
+    /**
+     * Calculates "size" of an array, generally it is row * col
+     *
+     * @param array     Array to be calculate
+     * @param arrayDesc Array Description
+     */
+    public static void printArraySize(int[][] array, String arrayDesc) {
+        int row = array.length;
+        int col = array[0].length;
+        System.out.println(String.format("Size of %s is (%d * %d =) %d ", arrayDesc, row, col, (row * col)));
     }
 }
