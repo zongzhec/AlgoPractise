@@ -1,6 +1,6 @@
 package foo.zongzhe.line.queue;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * 使用多种方法数组来模拟队列，包括环形和非环形。
@@ -8,89 +8,86 @@ import java.util.Scanner;
 
 public class ArrayQueueDemo {
 
-    static final int QUEUE_SIZE = 5;
-    static ArrayQueueNoCircle arrayQueueNoCircle;
+    static ArrayList<ArrayQueue> arrayQueues;
 
     public static void main(String[] args) {
 
         // 创建队列
-        initialArrayQueues();
+        int queueSize = 5;
+        initialArrayQueues(queueSize);
 
         // 判断是否为空
         checkIsEmpty();
 
         // 添加一个元素
-        addOneElement(3);
+        int[] values = {3};
+        addElements(values);
 
+        // 再次判断是否为空
+        checkIsEmpty();
 
-        // 接收用户输入，模拟队列生成环境
-        char key = ' '; // 接收用户输入
-        Scanner scanner = new Scanner(System.in);
-        showWelcomeMsg();
+        // 连续添加多个元素直至满元素
+        int[] values2 = {5, 2, 4, 5};
+        addElements(values2);
 
-        while (true) {
-            String input = scanner.nextLine();
-            parseInput(arrayQueueNoCircle, input, scanner);
-        }
+        // 判断队列是否满了
+        checkIsFull();
+
+        // 取出多个元素
+        takeElement(2);
+
+        // 再次添加一个元素，查看队列是否可以循环利用
+        int[] values3 = {3};
+        addElements(values3);
+
+        // 再次判断队列是否满了
+        checkIsFull();
+
+        // 展示全部元素
+        showElements();
 
     }
 
 
-
-    private static void initialArrayQueues() {
-        arrayQueueNoCircle = new ArrayQueueNoCircle(QUEUE_SIZE);
+    private static void initialArrayQueues(int queueSize) {
+        arrayQueues = new ArrayList<>();
+        arrayQueues.add(new ArrayQueueNoCircle(queueSize)); // 加一个ArrayQueueNoCircle
     }
 
     private static void checkIsEmpty() {
-        System.out.println("arrayQueueNoCircle isEmpty? " + arrayQueueNoCircle.isEmpty());
+        for (ArrayQueue arrayQueue : arrayQueues) {
+            System.out.println(String.format("%s isEmpty? %b", arrayQueue.arrayQueueDesc, arrayQueue.isEmpty()));
+        }
+
     }
 
-    private static void addOneElement(int elementValue) {
-        arrayQueueNoCircle.addElement(elementValue);
-    }
-
-    private static void parseInput(ArrayQueueNoCircle arrayQueueNoCircle, String input, Scanner scanner) {
-        switch (input) {
-            case "s":
-                arrayQueueNoCircle.showElements();
-                break;
-            case "e":
-                scanner.close();
-                System.exit(0);
-                break;
-            case "a":
-                System.out.println("请输入一个整数");
-                int newElementInt = scanner.nextInt();
-                arrayQueueNoCircle.addElement(newElementInt);
-                break;
-            case "h":
-                try {
-                    int res = arrayQueueNoCircle.getFirstElement();
-                    System.out.println("头部的数据是：" + res);
-                } catch (Exception e) { // 这里的try-catch是必要的，因为业务端要负责处理异常
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "g":
-                try {
-                    int res = arrayQueueNoCircle.takeElement();
-                    System.out.println("取出的数据是：" + res);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("未定义的操作，请重新输入");
-                showWelcomeMsg();
-                break;
+    private static void addElements(int[] elementValues) {
+        for (ArrayQueue arrayQueue : arrayQueues) {
+            for (int elementValue : elementValues) {
+                arrayQueue.addElement(elementValue);
+            }
         }
     }
 
-    private static void showWelcomeMsg() {
-        System.out.println("s(show): 显示队列");
-        System.out.println("e(exit): 退出程序");
-        System.out.println("a(add): 添加数据到队列");
-        System.out.println("h(head): 获得队列头数据");
-        System.out.println("g(get): 从队列取出数据");
+    private static void checkIsFull() {
+        for (ArrayQueue arrayQueue : arrayQueues) {
+            System.out.println(String.format("%s isFull? %b", arrayQueue.arrayQueueDesc, arrayQueue.isFull()));
+        }
     }
+
+    private static void takeElement(int elementNumber) {
+        for (ArrayQueue arrayQueue : arrayQueues) {
+            for (int i = 1; i <= elementNumber; i++) {
+                arrayQueue.takeElement();
+            }
+        }
+    }
+
+    private static void showElements() {
+        for (ArrayQueue arrayQueue : arrayQueues) {
+            arrayQueue.showElements();
+        }
+
+    }
+
 }
