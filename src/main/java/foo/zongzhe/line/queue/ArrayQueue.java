@@ -3,7 +3,7 @@ package foo.zongzhe.line.queue;
 public abstract class ArrayQueue {
     public int start; // 标记头元素，但是位置可变，详见各实现类
     public int end; // 标记末元素，但是位置可变，详见各实现类
-    public int maxSize;
+    public int arraySize;
     public int[] array;
     public String arrayQueueDesc;
 
@@ -41,16 +41,7 @@ public abstract class ArrayQueue {
     /**
      * 显示所有元素
      */
-    public void showElements() {
-        if (isEmpty()) {
-            System.out.println(String.format("%s is empty, no values are able to show", arrayQueueDesc));
-        } else {
-            System.out.print("Iterating " + arrayQueueDesc + ": ");
-            for (int i = 0; i < array.length; i++) {
-                System.out.print(array[i] + " ");
-            }
-            System.out.println();
-        }
-    }
+    public abstract void showElements();
+
 
 }

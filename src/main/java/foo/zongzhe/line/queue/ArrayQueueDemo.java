@@ -22,6 +22,7 @@ public class ArrayQueueDemo {
         // 添加一个元素
         int[] values = {3};
         addElements(values);
+        showElements();
 
         // 再次判断是否为空
         checkIsEmpty();
@@ -29,6 +30,7 @@ public class ArrayQueueDemo {
         // 连续添加多个元素直至满元素
         int[] values2 = {5, 2, 4, 5};
         addElements(values2);
+        showElements();
 
         // 判断队列是否满了
         checkIsFull();
@@ -51,7 +53,8 @@ public class ArrayQueueDemo {
 
     private static void initialArrayQueues(int queueSize) {
         arrayQueues = new ArrayList<>();
-        arrayQueues.add(new ArrayQueueNoCircle(queueSize)); // 加一个ArrayQueueNoCircle
+//        arrayQueues.add(new ArrayQueueNoCircle(queueSize)); // 加一个ArrayQueueNoCircle
+        arrayQueues.add(new ArrayQueueCircle1(queueSize)); // 加一个ArrayQueueCircle1
     }
 
     private static void checkIsEmpty() {
@@ -78,7 +81,7 @@ public class ArrayQueueDemo {
     private static void takeElement(int elementNumber) {
         for (ArrayQueue arrayQueue : arrayQueues) {
             for (int i = 1; i <= elementNumber; i++) {
-                arrayQueue.takeElement();
+                int res = arrayQueue.takeElement();
             }
         }
     }

@@ -1,17 +1,22 @@
 package foo.zongzhe.line.queue;
 
-public class ArrayQueueNoCircle extends ArrayQueue {
+/**
+ * 用数组实现循环队列思路1：
+ * start为头元素所在位置，end为末元素所在位置+1
+ * 数组的size = 队列的size+1
+ */
+public class ArrayQueueCircle1 extends ArrayQueue {
 
     /**
      * 创建队列构造器
      */
-    public ArrayQueueNoCircle(int queueSize) {
+    public ArrayQueueCircle1(int queueSize) {
         super(queueSize);
-        this.arraySize = queueSize;
+        this.arraySize = queueSize + 1;
         array = new int[arraySize];
-        start = -1; // 指向队列头部
-        end = -1;
-        arrayQueueDesc = "ArrayQueueNoCircle";
+        start = 0; // 指向队列头部
+        end = 0;
+        arrayQueueDesc = "ArrayQueueCircle1";
         System.out.println(String.format("%s initialized. start = %d, end = %d", arrayQueueDesc, start, end));
     }
 
@@ -20,7 +25,7 @@ public class ArrayQueueNoCircle extends ArrayQueue {
      */
     @Override
     public boolean isFull() {
-        return end == arraySize - 1;
+        return start == (end + 1) % arraySize;
     }
 
     /**
@@ -30,7 +35,6 @@ public class ArrayQueueNoCircle extends ArrayQueue {
      */
     @Override
     public boolean isEmpty() {
-//        return front == -1; // 这个不行，因为可以中途取出数据之后，array变成了空
         return start == end;
     }
 
@@ -44,8 +48,8 @@ public class ArrayQueueNoCircle extends ArrayQueue {
         if (isFull()) {
             System.out.println(String.format("%s is full, no values are allowed to add", arrayQueueDesc));
         } else {
-            end++;
             array[end] = element;
+            end = (end + 1) % arraySize;
             System.out.println(String.format("%s added one element %d. start = %d, end = %d", arrayQueueDesc, element, start, end));
         }
     }
@@ -60,8 +64,10 @@ public class ArrayQueueNoCircle extends ArrayQueue {
         if (isEmpty()) {
             throw new RuntimeException(String.format("%s is empty, no values are able to retrieve", arrayQueueDesc));
         } else {
-            start++;
-            return array[start];
+            int res = array[start];
+            start = (start + 1) % arraySize;
+            System.out.println(String.format("%s took one element %d. start = %d, end = %d", arrayQueueDesc, res, start, end));
+            return res;
         }
     }
 
@@ -74,21 +80,10 @@ public class ArrayQueueNoCircle extends ArrayQueue {
             System.out.println(String.format("%s is empty, no values are able to show", arrayQueueDesc));
         } else {
             System.out.print("Iterating " + arrayQueueDesc + ": ");
-            for (int i = 0; i < array.length; i++) {
+            for (int i = start; i != end; i = (i + 1) % arraySize) {
                 System.out.print(array[i] + " ");
             }
             System.out.println();
-        }
-    }
-
-    /**
-     * 获得队列头部数据，但并不将其取出
-     */
-    public int getFirstElement() {
-        if (isEmpty()) {
-            throw new RuntimeException(String.format("%s is empty, no values are able to retrieve", arrayQueueDesc));
-        } else {
-            return array[start + 1];
         }
     }
 
