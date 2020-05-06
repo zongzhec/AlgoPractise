@@ -1,3 +1,5 @@
 
 .gradle/*
 .idea/*
+*.class
+build/classes/java/main/foo/zongzhe/line/queue/ArrayQueueCircle1.class

@@ -4,6 +4,7 @@ package foo.zongzhe.line.queue;
  * 用数组实现循环队列思路1：
  * start为头元素所在位置，end为末元素所在位置+1
  * 数组的size = 队列的size+1
+ * @see  <a href="https://blog.csdn.net/zongziczz/article/details/105921622">数组模拟环形队列的思路和思考</a>
  */
 public class ArrayQueueCircle1 extends ArrayQueue {
 
