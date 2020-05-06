@@ -1,9 +1,9 @@
 package foo.zongzhe.line.linked_list;
 
-public class SortedLinkedList extends LinkedList {
+public class SortedSingleLinkedList extends LinkedList {
 
-    public SortedLinkedList() {
-        listDesc = "SortedLinkedList";
+    public SortedSingleLinkedList() {
+        listDesc = "SortedSingleLinkedList";
         System.out.println(listDesc + " is created");
     }
 
@@ -15,7 +15,6 @@ public class SortedLinkedList extends LinkedList {
     @Override
     public void add(HeroNode newHero) {
         int newHeroNo = newHero.getNo();
-        System.out.println("Trying to add new hero with No.=" + newHeroNo);
         HeroNode currentNode = headNode;
         while (currentNode != null) {
             if (currentNode.getNo() == newHeroNo) {

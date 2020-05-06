@@ -94,19 +94,18 @@ public class LinkedList {
     }
 
     /**
-     * 替换，或者修改一个节点
+     * 替换，或者修改一个节点，直接替换新节点对应位置上的节点
      *
-     * @param existingNode
      * @param newNode
      */
-    public void replace(HeroNode existingNode, HeroNode newNode) {
+    public void replace(HeroNode newNode) {
         boolean updated = false;
         if (isEmpty()) {
             System.out.println(listDesc + " is empty, unable to update records");
         } else {
             HeroNode currentNode = headNode.next;
             while (currentNode != null) {
-                if (currentNode.getNo() == existingNode.getNo()) {
+                if (currentNode.getNo() == newNode.getNo()) {
                     getParentNode(currentNode).next = newNode;
                     newNode.next = currentNode.next;
                     updated = true;
@@ -118,6 +117,37 @@ public class LinkedList {
         if (!updated) {
             System.out.println(listDesc + " is unable to find the node to replace");
         }
+    }
+
+    /**
+     * 返回链表长度
+     *
+     * @return
+     */
+    public int getLength() {
+        int length = 0;
+        HeroNode currentNode = headNode;
+        while (currentNode.next != null) {
+            length++;
+            currentNode = currentNode.next;
+        }
+        return length;
+    }
+
+    public LinkedList reverse() {
+        LinkedList reversedList = new LinkedList();
+        HeroNode currentNode = headNode.next;
+        HeroNode nextNode = null;
+        while (currentNode != null) {
+            // 记录下一个节点备用
+            nextNode = currentNode.next;
+            // 重新绑定关联
+            currentNode.next = reversedList.headNode.next;
+            // 附加在新链表上
+            reversedList.headNode.next = currentNode;
+            currentNode = nextNode;
+        }
+        return reversedList;
     }
 
 

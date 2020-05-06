@@ -15,11 +15,13 @@ public class LinkedListDemo {
         HeroNode hero1 = new HeroNode(1, "Song Jiang", "Timely Rain"); // 及时雨宋江
         HeroNode hero2 = new HeroNode(2, "Lu Junyi", "Jade Qilin"); // 玉麒麟卢俊义
         HeroNode hero3 = new HeroNode(3, "Wu Yong", "Knowledgeable Star"); // 智多星吴用
+        HeroNode hero4 = new HeroNode(4, "Gongsun Sheng", "Dragon in the Clouds"); // 入云龙公孙胜
         ArrayList<HeroNode> someHeros = new ArrayList<>();
         someHeros.add(hero3);
         someHeros.add(hero1);
-        someHeros.add(hero2);
+        someHeros.add(hero4);
         addHeros(someHeros);
+        getLength();
         showHeros();
 
 
@@ -27,13 +29,31 @@ public class LinkedListDemo {
         hero1.setNickName("Gongming"); // 公明
         ArrayList<HeroNode> moreHeros = new ArrayList<>();
         moreHeros.add(hero1);
+        moreHeros.add(hero2);
         addHeros(moreHeros);
+        getLength();
         showHeros();
+
+        // 反转链表
+        reverseLists();
 
     }
 
+    private static void reverseLists() {
+        for (LinkedList list : lists) {
+            LinkedList reversedList = list.reverse();
+            reversedList.showList();
+        }
+    }
+
+    private static void getLength() {
+        for (LinkedList list : lists) {
+            System.out.println(list.listDesc + " length is: " + list.getLength());
+        }
+    }
+
     private static void initializeLists() {
-        lists.add(new SortedLinkedList()); // 添加一个SortedLinkedList
+        lists.add(new SortedSingleLinkedList()); // 添加一个SortedLinkedList
     }
 
     private static void addHeros(ArrayList<HeroNode> someHeros) {
