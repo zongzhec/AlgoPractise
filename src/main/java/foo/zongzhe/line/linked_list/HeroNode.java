@@ -12,6 +12,7 @@ public class HeroNode {
     public String name;
     public String nickName;
     public HeroNode next;
+    public HeroNode prev;
 
     public HeroNode(int no, String name, String nickName) {
         this.no = no;

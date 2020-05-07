@@ -53,7 +53,8 @@ public class LinkedListDemo {
     }
 
     private static void initializeLists() {
-        lists.add(new SortedSingleLinkedList()); // 添加一个SortedLinkedList
+//        lists.add(new SortedSingleLinkedList()); // 添加一个SortedLinkedList
+        lists.add(new SortedDoubleLinkedList()); // 添加一个SortedDoubleLinkedList
     }
 
     private static void addHeros(ArrayList<HeroNode> someHeros) {

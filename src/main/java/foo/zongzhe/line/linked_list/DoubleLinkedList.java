@@ -1,67 +1,50 @@
 package foo.zongzhe.line.linked_list;
 
 /**
- * 定义LinkedList来管理HeroNode
+ * 双向链表
  */
-public class LinkedList {
+public class DoubleLinkedList extends LinkedList {
 
-    public HeroNode headNode;
-    public HeroNode lastNode;
-    public String listDesc;
-    public int size; // 以后加上
+    public DoubleLinkedList() {
+        super();
+        lastNode = new HeroNode(0, "dummyHeroName", "dummyNickName");
+        headNode.next = lastNode;
+        lastNode.prev = headNode;
+        listDesc = "DoubleLinkedList";
+    }
 
-    public LinkedList() {
-        headNode = new HeroNode(0, "dummyHeroName", "dummyNickName");
-        headNode.next = null;
-        lastNode = headNode;
-        listDesc = "LinkedList";
-        size = 0;
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     /**
-     * 增加一个英雄
+     * 默认添加在尾部
      *
      * @param newHero
      */
+    @Override
     public void add(HeroNode newHero) {
-        lastNode.next = newHero;
-        lastNode = newHero;
+        HeroNode prevNode = lastNode.prev;
+        newHero.next = lastNode;
+        newHero.prev = prevNode;
+        prevNode.next = newHero;
+        lastNode.prev = newHero;
+        size++;
     }
 
-    /**
-     * 判断是否为空
-     *
-     * @return
-     */
-    public boolean isEmpty() {
-        return headNode.next == null;
-    }
-
-    /**
-     * @param childNode
-     * @return
-     */
+    @Override
     public HeroNode getParentNode(HeroNode childNode) {
         HeroNode res = null;
         if (isEmpty()) {
             System.out.println(listDesc + " is empty, unable to get parent");
         } else {
-            HeroNode currentNode = headNode.next;
-            while (currentNode != null) {
-                if (currentNode.next.getNo() == childNode.getNo()) {
-                    res = currentNode;
-                    break;
-                }
-            }
+            res = childNode.prev;
         }
         return res;
     }
 
-    /**
-     * 删除一个节点
-     *
-     * @param heroNo
-     */
+    @Override
     public void remove(int heroNo) {
         if (isEmpty()) {
             System.out.println(listDesc + " is empty, unable to remove records");
@@ -69,47 +52,44 @@ public class LinkedList {
             HeroNode currentNode = headNode.next;
             while (currentNode != null) {
                 if (currentNode.getNo() == heroNo) {
-                    // 这里有个getParentNode的操作，涉及到再一次遍历，所以效率稍低
-                    getParentNode(currentNode).next = currentNode.next;
+                    currentNode.next.prev = currentNode.prev;
+                    currentNode.prev.next = currentNode.next;
                     break;
                 } else {
                     currentNode = currentNode.next;
                 }
             }
         }
+        size--;
     }
 
-    /**
-     * 遍历List
-     */
+    @Override
     public void showList() {
         if (isEmpty()) {
             System.out.println(listDesc + " is empty, unable to show records");
         } else {
             System.out.println("Iterating " + listDesc);
             HeroNode currentNode = headNode.next;
-            while (currentNode != null) {
+            while (currentNode != lastNode) {
                 System.out.println(currentNode);
                 currentNode = currentNode.next;
             }
         }
     }
 
-    /**
-     * 替换，或者修改一个节点，直接替换新节点对应位置上的节点
-     *
-     * @param newNode
-     */
+    @Override
     public void replace(HeroNode newNode) {
         boolean updated = false;
         if (isEmpty()) {
             System.out.println(listDesc + " is empty, unable to update records");
         } else {
             HeroNode currentNode = headNode.next;
-            while (currentNode != null) {
+            while (currentNode != lastNode) {
                 if (currentNode.getNo() == newNode.getNo()) {
-                    getParentNode(currentNode).next = newNode;
+                    currentNode.prev.next = newNode;
+                    currentNode.next.prev = newNode;
                     newNode.next = currentNode.next;
+                    newNode.prev = currentNode.prev;
                     updated = true;
                     break;
                 }
@@ -121,32 +101,25 @@ public class LinkedList {
         }
     }
 
-    /**
-     * 返回链表长度
-     *
-     * @return
-     */
+    @Override
     public int getLength() {
-        int length = 0;
-        HeroNode currentNode = headNode;
-        while (currentNode.next != null) {
-            length++;
-            currentNode = currentNode.next;
-        }
-        return length;
+        return size;
     }
 
+    @Override
     public LinkedList reverse() {
-        LinkedList reversedList = new LinkedList();
+        LinkedList reversedList = new DoubleLinkedList();
         HeroNode currentNode = headNode.next;
         HeroNode nextNode = null;
-        while (currentNode != null) {
+        while (currentNode != lastNode) {
             // 记录下一个节点备用
             nextNode = currentNode.next;
             // 重新绑定关联
             currentNode.next = reversedList.headNode.next;
-            // 附加在新链表上
+            currentNode.prev = reversedList.headNode;
+            reversedList.headNode.next.prev = currentNode;
             reversedList.headNode.next = currentNode;
+            // 附加在新链表上
             currentNode = nextNode;
         }
         return reversedList;
