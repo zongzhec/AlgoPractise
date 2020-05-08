@@ -40,6 +40,7 @@ public class LinkedListDemo {
     }
 
     private static void reverseLists() {
+        System.out.println("reversing lists");
         for (LinkedList list : lists) {
             LinkedList reversedList = list.reverse();
             reversedList.showList();

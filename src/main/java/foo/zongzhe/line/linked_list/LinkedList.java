@@ -26,6 +26,7 @@ public class LinkedList {
     public void add(HeroNode newHero) {
         lastNode.next = newHero;
         lastNode = newHero;
+        size++;
     }
 
     /**
@@ -34,7 +35,7 @@ public class LinkedList {
      * @return
      */
     public boolean isEmpty() {
-        return headNode.next == null;
+        return size==0;
     }
 
     /**
@@ -52,6 +53,7 @@ public class LinkedList {
                     res = currentNode;
                     break;
                 }
+                currentNode = currentNode.next;
             }
         }
         return res;
@@ -71,12 +73,14 @@ public class LinkedList {
                 if (currentNode.getNo() == heroNo) {
                     // 这里有个getParentNode的操作，涉及到再一次遍历，所以效率稍低
                     getParentNode(currentNode).next = currentNode.next;
+                    size--;
                     break;
                 } else {
                     currentNode = currentNode.next;
                 }
             }
         }
+
     }
 
     /**
@@ -127,17 +131,12 @@ public class LinkedList {
      * @return
      */
     public int getLength() {
-        int length = 0;
-        HeroNode currentNode = headNode;
-        while (currentNode.next != null) {
-            length++;
-            currentNode = currentNode.next;
-        }
-        return length;
+        return size;
     }
 
     public LinkedList reverse() {
         LinkedList reversedList = new LinkedList();
+        reversedList.size = this.size;
         HeroNode currentNode = headNode.next;
         HeroNode nextNode = null;
         while (currentNode != null) {

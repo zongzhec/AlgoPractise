@@ -109,6 +109,7 @@ public class DoubleLinkedList extends LinkedList {
     @Override
     public LinkedList reverse() {
         LinkedList reversedList = new DoubleLinkedList();
+        reversedList.size = this.size;
         HeroNode currentNode = headNode.next;
         HeroNode nextNode = null;
         while (currentNode != lastNode) {
