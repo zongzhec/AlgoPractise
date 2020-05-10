@@ -11,6 +11,9 @@ public class Calculator {
         String exp1 = "5+7*2*2+3-6*1";
         cal.calculate(exp1);
 
+        String exp2 = "3+2*6-2";
+        cal.calculate(exp2);
+
     }
 
     public void calculate(String exp) {
