@@ -1,10 +1,10 @@
 package foo.zongzhe.algo.sort;
 
-public class SelectionSort extends Sort {
+public class SelectSort extends Sort {
 
-    public SelectionSort(int[] array) {
+    public SelectSort(int[] array) {
         super(array);
-        sortDesc = "SelectionSort";
+        sortDesc = "SelectSort";
     }
 
     /**
@@ -21,7 +21,9 @@ public class SelectionSort extends Sort {
                     minIndex = j;
                 }
             }
-            swap(minIndex, i);
+            if (minIndex != i) { // 简单的优化
+                swap(minIndex, i);
+            }
         }
         printArray(true);
     }

@@ -10,8 +10,12 @@ public class SortDemo {
         bubbleSort.sort();
 
         array = getNewArray();
-        SelectionSort selectionSort = new SelectionSort(array);
+        SelectSort selectionSort = new SelectSort(array);
         selectionSort.sort();
+
+        array = getNewArray();
+        InsertSort insertSort = new InsertSort(array);
+        insertSort.sort();
     }
 
     public static int[] getNewArray() {
