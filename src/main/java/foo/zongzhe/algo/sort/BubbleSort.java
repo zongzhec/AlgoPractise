@@ -13,7 +13,9 @@ public class BubbleSort extends Sort {
      * 冒泡排序（含优化算法）
      * 定义swapHappened标识是否进行过交换，如果一次for循环内没有进行过交换，则数列已经有序
      */
+    @Override
     public void sort() {
+        printArray(false);
         boolean swapHappened = false;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
@@ -29,5 +31,6 @@ public class BubbleSort extends Sort {
                 swapHappened = false;
             }
         }
+        printArray(true);
     }
 }

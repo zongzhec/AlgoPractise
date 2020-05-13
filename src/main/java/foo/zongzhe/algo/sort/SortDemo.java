@@ -7,15 +7,11 @@ public class SortDemo {
     public static void main(String[] args) {
         int[] array = getNewArray();
         BubbleSort bubbleSort = new BubbleSort(array);
-        bubbleSort.printArray();
         bubbleSort.sort();
-        bubbleSort.printArray();
 
         array = getNewArray();
-        BubbleSort bubbleSort2 = new BubbleSort(array);
-        bubbleSort2.printArray();
-        bubbleSort2.sort();
-        bubbleSort2.printArray();
+        SelectionSort selectionSort = new SelectionSort(array);
+        selectionSort.sort();
     }
 
     public static int[] getNewArray() {
