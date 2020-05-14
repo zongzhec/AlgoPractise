@@ -13,7 +13,7 @@ public class SelectSort extends Sort {
      */
     @Override
     public void sort() {
-        printArray(false);
+        startTime = System.currentTimeMillis();
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < array.length; j++) {
@@ -25,7 +25,8 @@ public class SelectSort extends Sort {
                 swap(minIndex, i);
             }
         }
-        printArray(true);
+        endTime = System.currentTimeMillis();
+        printResult(endTime - startTime);
     }
 
 

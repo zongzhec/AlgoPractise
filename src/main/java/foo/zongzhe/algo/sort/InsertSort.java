@@ -15,7 +15,7 @@ public class InsertSort extends Sort {
      */
     @Override
     public void sort() {
-        printArray(false);
+        startTime = System.currentTimeMillis();
         for (int i = 1; i < array.length; i++) {
             int insertIndex = i - 1;
             int insertValue = array[i];
@@ -25,6 +25,7 @@ public class InsertSort extends Sort {
             }
                 array[insertIndex + 1] = insertValue;
         }
-        printArray(true);
+        endTime = System.currentTimeMillis();
+        printResult(endTime - startTime);
     }
 }

@@ -16,10 +16,14 @@ public class SortDemo {
         array = getNewArray();
         InsertSort insertSort = new InsertSort(array);
         insertSort.sort();
+
+        array = getNewArray();
+        ShellSort shellSort  = new ShellSort(array);
+        shellSort.sort();
     }
 
     public static int[] getNewArray() {
-        int[] array = {3, 9, -1, 20, 10};
+        int[] array = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         return array;
     }
 }

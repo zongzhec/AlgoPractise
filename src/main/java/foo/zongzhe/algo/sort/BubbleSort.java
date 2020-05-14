@@ -15,7 +15,7 @@ public class BubbleSort extends Sort {
      */
     @Override
     public void sort() {
-        printArray(false);
+        startTime = System.currentTimeMillis();
         boolean swapHappened = false;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
@@ -31,6 +31,7 @@ public class BubbleSort extends Sort {
                 swapHappened = false;
             }
         }
-        printArray(true);
+        endTime = System.currentTimeMillis();
+        printResult(endTime - startTime);
     }
 }
