@@ -20,6 +20,10 @@ public class SortDemo {
         array = getNewArray();
         ShellSort shellSort  = new ShellSort(array);
         shellSort.sort();
+
+        array = getNewArray();
+        QuickSort quickSort  = new QuickSort(array);
+        quickSort.sort();
     }
 
     public static int[] getNewArray() {
