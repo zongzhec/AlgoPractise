@@ -24,6 +24,10 @@ public class SortDemo {
         array = getNewArray();
         QuickSort quickSort  = new QuickSort(array);
         quickSort.sort();
+
+        array = getNewArray();
+        MergeSort mergeSort = new MergeSort(array);
+        mergeSort.sort();
     }
 
     public static int[] getNewArray() {
