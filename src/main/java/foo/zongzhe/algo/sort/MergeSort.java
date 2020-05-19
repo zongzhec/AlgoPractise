@@ -61,9 +61,7 @@ public class MergeSort extends Sort {
         }
 
         // 将temp数组的元素重新拷贝到原数组
-        for (int k = 0; k < temp.length; k++) {
-            array[start + k] = temp[k];
-        }
+        if (temp.length >= 0) System.arraycopy(temp, 0, array, start, temp.length);
 
     }
 }

@@ -11,17 +11,19 @@ public class SelSort {
         ArrayUtil.printArray(sSoret.nums);
     }
 
+    /**
+     * 基本思想：
+     * 每次都选取最小值，然后跟待排序数列的最前面交换。
+     */
     public void selSort() {
-        for (int step = nums.length / 2; step >= 1; step /= 2) {
-            for (int i = step; i < nums.length; i++) {
-                int j = i;
-                int insertValue = nums[j];
-                while (j - step >= 0 && nums[j - step] > nums[j]) {
-                    nums[j] = nums[j - step];
-                    j -= step;
+        for (int i = 0; i < nums.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < nums[minIndex]) {
+                    minIndex = j;
                 }
-                nums[j] = insertValue;
             }
+            ArrayUtil.swap(nums, i, minIndex);
         }
     }
 }

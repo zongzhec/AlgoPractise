@@ -13,16 +13,16 @@ public class EtQueen {
     public void place(int n) {
         if (n == maxQueen) {
             print();
-            return;
-        }
-        for (int i = 0; i < maxQueen; i++) {
-            loc[n] = i;
-            if (canPlace(n)) {
-                place(n + 1);
+        } else {
+            for (int i = 0; i < maxQueen; i++) {
+                loc[n] = i;
+                if (canPlace(n)) {
+                    place(n + 1);
+                }
             }
+
         }
     }
-
 
     public boolean canPlace(int n) {
         for (int i = 0; i < n; i++) {

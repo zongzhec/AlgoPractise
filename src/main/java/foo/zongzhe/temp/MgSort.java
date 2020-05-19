@@ -13,35 +13,39 @@ public class MgSort {
 
     public void mSort(int start, int end) {
         int middle = (start + end) / 2;
-        if (start != end) {
+        if (start < end) {
             mSort(start, middle);
             mSort(middle + 1, end);
         }
+
         int[] temp = new int[end - start + 1];
-        int leftIndex = start;
-        int rightIndex = middle + 1;
+        int left = start;
+        int right = middle + 1;
         int tempIndex = 0;
-        while (leftIndex <= middle && rightIndex <= end) {
-            if (nums[leftIndex] < nums[rightIndex]) {
-                temp[tempIndex] = nums[leftIndex];
-                leftIndex++;
+        while (left <= middle && right <= end) {
+            if (nums[left] < nums[right]) {
+                temp[tempIndex] = nums[left];
+                left++;
             } else {
-                temp[tempIndex] = nums[rightIndex];
-                rightIndex++;
+                temp[tempIndex] = nums[right];
+                right++;
             }
             tempIndex++;
         }
-        while (leftIndex <= middle) {
-            temp[tempIndex] = nums[leftIndex];
-            leftIndex++;
+
+        // Copy rest values
+        while (left <= middle) {
+            temp[tempIndex] = nums[left];
+            left++;
             tempIndex++;
         }
-        while (rightIndex <= end) {
-            temp[tempIndex] = nums[rightIndex];
-            rightIndex++;
+        while (right <= end) {
+            temp[tempIndex] = nums[right];
+            right++;
             tempIndex++;
         }
 
-        if (temp.length >= 0) System.arraycopy(temp, 0, nums, start + 0, temp.length);
+        // Copy back the values
+        System.arraycopy(temp, 0, nums, start, temp.length);
     }
 }
