@@ -23,7 +23,8 @@ public class RadixSort extends Sort {
     }
 
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         boolean hasHigherNum = true; // 标记是否还有更高的数位
         ArrayList<ArrayList<Integer>> buckets = new ArrayList<>();
@@ -59,6 +60,7 @@ public class RadixSort extends Sort {
             }
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 }

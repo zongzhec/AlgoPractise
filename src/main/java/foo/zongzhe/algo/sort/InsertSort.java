@@ -14,7 +14,8 @@ public class InsertSort extends Sort {
      * 排序过程中每次从无序表中取出第一个元素，把它的排序码一次与有序表元素的排序码进行比较，并插入到适当的位置，使之称为新的有序表。
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         for (int i = 1; i < array.length; i++) {
             int insertIndex = i - 1;
@@ -26,6 +27,7 @@ public class InsertSort extends Sort {
                 array[insertIndex + 1] = insertValue;
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 }

@@ -12,7 +12,8 @@ public class SelectSort extends Sort {
      * 每次都选取最小值，然后跟待排序数列的最前面交换。
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -26,7 +27,8 @@ public class SelectSort extends Sort {
             }
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 
 

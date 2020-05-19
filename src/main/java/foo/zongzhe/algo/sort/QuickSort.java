@@ -13,11 +13,13 @@ public class QuickSort extends Sort {
      * 然后再按此方法对这两部分数据分别进行快速排序，整个过程可以递归进行。
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         quickSort(0, array.length - 1);
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 
     public void quickSort(int start, int end) {

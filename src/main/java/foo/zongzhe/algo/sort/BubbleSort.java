@@ -14,7 +14,8 @@ public class BubbleSort extends Sort {
      * 定义swapHappened标识是否进行过交换，如果一次for循环内没有进行过交换，则数列已经有序
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         boolean swapHappened = false;
         for (int i = 0; i < array.length; i++) {
@@ -32,6 +33,7 @@ public class BubbleSort extends Sort {
             }
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 }

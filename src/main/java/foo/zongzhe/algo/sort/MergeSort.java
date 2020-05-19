@@ -12,11 +12,13 @@ public class MergeSort extends Sort {
      * 先分组，再内部排序，最后合并
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         mergeSort(0, array.length - 1);
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 
     /**

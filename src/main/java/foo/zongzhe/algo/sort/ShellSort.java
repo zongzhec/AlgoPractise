@@ -14,7 +14,8 @@ public class ShellSort extends Sort {
      * 注意：此处的内部排序是移动法排序，快
      */
     @Override
-    public void sort() {
+    public void sort(String size) {
+        printResult(size, state,endTime - startTime);
         startTime = System.currentTimeMillis();
         for (int step = array.length / 2; step > 0; step = step / 2) {
             // 逐个对其所在的组进行直接插入
@@ -29,7 +30,8 @@ public class ShellSort extends Sort {
             }
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(size, state,endTime - startTime);
     }
 
     /**
@@ -47,6 +49,7 @@ public class ShellSort extends Sort {
             }
         }
         endTime = System.currentTimeMillis();
-        printResult(endTime - startTime);
+        state = Constant.AFTER;
+        printResult(null, state,endTime - startTime);
     }
 }
