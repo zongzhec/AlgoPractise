@@ -12,13 +12,15 @@ public class SearchDemo {
         initialSearchMethods();
 
         search(array[0], "first element");
-        search(array[array.length-1], "last element");
-        search(array[array.length-1], "middle element");
-        search(array[array.length-1], "non-existing element");
+        search(array[array.length - 1], "last element");
+        search(array[array.length/2], "middle element");
+        search(999999, "non-existing element");
     }
 
     private static void initialSearchMethods() {
         searchMethods.add(new BinarySearch(array));
+        searchMethods.add(new InsertSearch(array));
+        searchMethods.add(new FibonacciSearch(array));
     }
 
     private static void search(int target, String desc) {

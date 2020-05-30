@@ -16,6 +16,7 @@ public class BinarySearch extends Search{
      */
     @Override
     public int search(int target) {
+        searchRound = 0; // initial round for each search
       startTime = System.currentTimeMillis();
         return binarySearch(0, array.length - 1, target);
     }
