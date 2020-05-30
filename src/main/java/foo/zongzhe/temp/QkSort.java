@@ -18,23 +18,18 @@ public class QkSort {
      * 然后再按此方法对这两部分数据分别进行快速排序，整个过程可以递归进行。
      */
     public void qSort(int start, int end) {
-        if (start >= end) {
-            return;
+        int middle = (start + end)/2;
+        int middleValue = nums[middle];
+        int leftIndex = start;
+        int rightIndex = end;
+        while(leftIndex<rightIndex){
+            while(nums[leftIndex]<middleValue && leftIndex<rightIndex) leftIndex++;
+            while(nums[rightIndex]<middleValue && leftIndex<rightIndex) rightIndex--;
+            ArrayUtil.swap(nums, leftIndex, rightIndex);
+            if (leftIndex >= rightIndex) break;
+            if (leftIndex == middle) rightIndex--;
+            if (rightIndex == middle) leftIndex++;
         }
-        int middleValue = nums[(start + end) / 2];
-        int left = start;
-        int right = end;
-        while (left < right) {
-            while (nums[left] < middleValue) left++;
-            while (nums[right] > middleValue) right--;
 
-            ArrayUtil.swap(nums, left, right);
-            if (left >= right) break;
-            // end of left
-            if (nums[left] == middleValue) right++;
-            else left++;
-        }
-        qSort(start, left-1);
-        qSort(right + 1, end);
     }
 }

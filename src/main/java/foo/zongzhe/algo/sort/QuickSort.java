@@ -34,7 +34,7 @@ public class QuickSort extends Sort {
                 while (array[right] > middleValue) right--;
                 while (array[left] < middleValue) left++;
                 swap(left, right);
-                if (left >= right) break; // 感觉可以不用判断大于，有待考证
+                if (left >= right) break;
                 if (array[right] == middleValue) left++; // 左边走到头了
                 if (array[left] == middleValue) right--;
             }
