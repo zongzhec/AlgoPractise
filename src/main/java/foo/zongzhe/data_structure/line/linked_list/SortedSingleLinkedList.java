@@ -1,5 +1,7 @@
 package foo.zongzhe.data_structure.line.linked_list;
 
+import foo.zongzhe.data_structure.common.HeroNode;
+
 public class SortedSingleLinkedList extends LinkedList {
 
     public SortedSingleLinkedList() {

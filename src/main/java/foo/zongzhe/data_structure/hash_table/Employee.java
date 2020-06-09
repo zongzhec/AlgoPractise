@@ -1,4 +1,4 @@
-package foo.zongzhe.data_structure.line.hash_table;
+package foo.zongzhe.data_structure.hash_table;
 
 public class Employee {
     private int id;

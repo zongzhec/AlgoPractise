@@ -1,4 +1,4 @@
-package foo.zongzhe.data_structure.line.linked_list;
+package foo.zongzhe.data_structure.common;
 
 /**
  * 使用带head头的单向链表实现——水浒英雄排行榜管理

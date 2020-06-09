@@ -1,4 +1,4 @@
-package foo.zongzhe.data_structure.line.hash_table;
+package foo.zongzhe.data_structure.hash_table;
 
 /**
  * 使用哈希表来管理雇员信息

@@ -1,7 +1,7 @@
 package foo.zongzhe.data_structure.line.linked_list.app;
 
 import foo.zongzhe.data_structure.line.linked_list.CircleLinkedList;
-import foo.zongzhe.data_structure.line.linked_list.HeroNode;
+import foo.zongzhe.data_structure.common.HeroNode;
 
 /**
  * 使用链表解决约瑟夫环问题
