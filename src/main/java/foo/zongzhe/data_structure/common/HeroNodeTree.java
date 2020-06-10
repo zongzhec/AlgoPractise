@@ -66,6 +66,66 @@ public class HeroNodeTree {
         System.out.println(this);
     }
 
+    /**
+     * 前序遍历查找
+     *
+     * @param no
+     * @return
+     */
+    public HeroNodeTree preOrderSearch(int no) {
+        HeroNodeTree res = null;
+        // 先比较当前节点
+        if (this.no == no) {
+            return this;
+        }
+        if (this.left != null) {
+            res = this.left.preOrderSearch(no);
+            if (res != null) {
+                return res;
+            }
+        }
+        if (this.right != null) {
+            res = this.right.preOrderSearch(no);
+            if (res != null) {
+                return res;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 删除节点A
+     * 规则：
+     * 1. 如果只有一个子节点，则用其子节点代替当前需要被删除的节点
+     * 2. 如果有左子节点B和右子节点C，则让左子节点代替A
+     *
+     * @param no
+     */
+    public void delNode(int no) {
+        if (this.left != null && this.left.no == no) {
+            if (this.left.left != null) {
+                this.left = this.left.left;
+            } else if (this.left.right != null) {
+                this.left = this.left.right;
+            } else {
+                this.left = null;
+            }
+            return;
+        }
+        if (this.right != null && this.right.no == no) {
+            if (this.right.left != null) {
+                this.right = this.right.left;
+            } else if (this.right.right != null) {
+                this.right = this.right.right;
+            } else {
+                this.right = null;
+            }
+            return;
+        }
+        this.left.delNode(no);
+        this.right.delNode(no);
+    }
+
     public int getNo() {
         return no;
     }

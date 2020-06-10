@@ -16,7 +16,7 @@ public class BinaryTree {
         System.out.println("Printing as preOrder");
         if (this.root != null) {
             this.root.preOrder();
-        }else{
+        } else {
             System.out.println("Binary tree is empty, unable to iterate");
         }
     }
@@ -25,7 +25,7 @@ public class BinaryTree {
         System.out.println("Printing as infixOrder");
         if (this.root != null) {
             this.root.infixOrder();
-        }else{
+        } else {
             System.out.println("Binary tree is empty, unable to iterate");
         }
     }
@@ -34,8 +34,19 @@ public class BinaryTree {
         System.out.println("Printing as postOrder");
         if (this.root != null) {
             this.root.postOrder();
-        }else{
+        } else {
             System.out.println("Binary tree is empty, unable to iterate");
         }
+    }
+
+    public HeroNodeTree preOrderSearch(int no) {
+        System.out.println("Searching via pre order");
+        HeroNodeTree res = root.preOrderSearch(no);
+        if (res != null) {
+            System.out.println("HeroNode found:");
+        } else {
+            System.out.println("HeroNode not found:");
+        }
+        return res;
     }
 }

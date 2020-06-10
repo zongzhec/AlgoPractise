@@ -14,16 +14,22 @@ public class BinaryTreeDemo {
         HeroNodeTree hero2 = new HeroNodeTree(2, "Lu Junyi", "Jade Qilin"); // 玉麒麟卢俊义
         HeroNodeTree hero3 = new HeroNodeTree(3, "Wu Yong", "Knowledgeable Star"); // 智多星吴用
         HeroNodeTree hero4 = new HeroNodeTree(4, "Gongsun Sheng", "Dragon in the Clouds"); // 入云龙公孙胜
+        HeroNodeTree hero5 = new HeroNodeTree(5, "Guan Sheng", "Great Blade"); // 大刀关胜
 
         // 手动创建二叉树
-        binaryTree.setRoot(hero1);
-        hero1.setLeft(hero2);
-        hero1.setRight(hero3);
-        hero3.setRight(hero4);
+        binaryTree.setRoot(hero2);
+        hero2.setLeft(hero1);
+        hero2.setRight(hero4);
+        hero4.setLeft(hero3);
+        hero4.setRight(hero5);
 
         // 测试遍历
         binaryTree.preOrder();
         binaryTree.infixOrder();
         binaryTree.postOrder();
+
+        // 测试查找
+        System.out.println(binaryTree.preOrderSearch(4));
+        System.out.println(binaryTree.preOrderSearch(8));
     }
 }
